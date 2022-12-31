@@ -1,0 +1,181 @@
+{% extends "base.html" %} {% load static %} {% load student %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      href="{% static 'css/comdashboard.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>VIT | Placement Cell</title>
+    <!-- <script src="index.js"></script> -->
+  </head>
+  <body>
+    {% block content %}
+    <div class="main-content">
+      <main id="dashboard">
+        <div class="cards">
+          <div class="card-single">
+            <div>
+              <h1>{{ user|cominternshipcount:iObj }}</h1>
+              <span>Internships</span>
+            </div>
+            <div>
+              <span class="las la-industry"> </span>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div>
+              <h1>{{ user|complacementcount:pObj }}</h1>
+              <span>Placements</span>
+            </div>
+            <div>
+              <span class="las la-clipboard-list"> </span>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div>
+              <h1>{{ iObj|notapprovecom:pObj }}</h1>
+              <span>Not Approved</span>
+            </div>
+            <div>
+              <span class="las la-window-close"> </span>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div>
+              <h1>{{ iObj|approvecom:pObj }}</h1>
+              <span>Approved</span>
+            </div>
+            <div>
+              <span class="las la-check-circle"> </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-grid">
+          <div class="projects">
+            <div class="card">
+              <div class="card-header">
+                <h3>Applications</h3>
+
+                <a href="comall">
+                  See all <span class="las la-arrow-right"> </span>
+                </a>
+              </div>
+
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table width="100%">
+                    <thead>
+                      <tr>
+                        <td>Type</td>
+                        <td>Domain</td>
+                        <td>Status</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in iObj %}
+                      <tr>
+                        <td><a href="/dashboard/cominternship#{{ i.id }}" style="text-decoration: none; color: black">Internship</td>
+                        <td>{{i.domain}}</td>
+                        {% if i.status %}
+                        <td>
+                          <span class="green"> Approved </span>
+                        </td>
+                        {% else %}
+                        <td>
+                          <span class="red"> Not Approved </span>
+                        </td>
+                        {% endif %}
+                      </tr>
+                      {% endfor %} {% for p in pObj %}
+                      <tr>
+                        <td><a href="/dashboard/complacement#{{ p.id }}" style="text-decoration: none; color: black">Placement</td>
+                        <td>{{p.domain}}</td>
+                        {% if p.status %}
+                        <td>
+                          <span class="green"> Approved </span>
+                        </td>
+                        {% else %}
+                        <td>
+                          <span class="red"> Not Approved </span>
+                        </td>
+                        {% endif %}
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="recent-grid">
+          <div class="projects">
+            <div class="card">
+              <div class="card-header">
+                <h3>Candidates</h3>
+              </div>
+
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table width="100%">
+                    <thead>
+                      <tr>
+                        <td>Name</td>
+                        <td>Domain</td>
+                        <td>Type</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for item in studentIntern %}
+                      {% for querySet in item %}
+                      <tr>
+                        <td>{{ querySet.student_username|getStudentName:suser }}</td>
+                          <td>{{ querySet.internship_id|getInternDomainName:suser }}</td>
+                        <td><a href="/dashboard/cominternship#{{ querySet.internship_id }}" style="text-decoration: none; color: black">Internship</td>
+                      </tr>
+                      {% endfor %}
+                      {% endfor %}
+                      {% for item in studentPlace %}
+                      {% for querySet in item %}
+                      <tr>
+                        <td>{{ querySet.student_username|getStudentName:suser }}</td>
+                        <td>{{ querySet.placement_id|getPlaceDomainName:suser }}</td>
+                        <td><a href="/dashboard/complacement#{{ querySet.placement_id }}" style="text-decoration: none; color: black">Placement</td>
+                      </tr>
+                      {% endfor %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    {% endblock %}
+  </body>
+</html>

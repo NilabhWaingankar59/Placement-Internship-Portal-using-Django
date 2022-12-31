@@ -1,0 +1,225 @@
+{% load static %}
+{% load student %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link
+      href="{% static 'css/aboutus.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>VIT | Placement Cell</title>
+        <style>
+          @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+        </style>
+  </head>
+  <body style="background: url(../static/images/body_bg.png);">
+    <section id="main">
+      <nav>
+        <a href="/" class="logo">
+          <img src="{% static 'images/VITlogo.png' %}" alt="VIT logo" />
+        </a>
+        <ul class="menu">
+          {% if user.is_authenticated %}
+          <li><a href="" class="no-hover">Hi, {{user.username}}</a></li>
+          {% endif %}
+          <li><a href="/">Home</a></li>
+          {% if user.is_authenticated %}
+            {% if user|is_student:suser %}
+              <li><a href="dashboard">Dashboard</a></li>
+            {% else %}
+            {{suser.username}}
+              <li><a href="dashboard/comdashboard">Dashboard</a></li>
+            {% endif %}  
+          <li><a href="logout">Logout</a></li>
+          {% else %}
+          <li><a href="stusignin">Student</a></li>
+          <li><a href="comsignin">Company</a></li>
+          {% endif %}
+          <li><a href="about">About Us</a></li>  
+        </ul>
+      </nav>
+    </section>
+     <div class="card">
+        <div class="content">
+          <img src="{% static 'images/siddhesh.jpg' %}" />
+          <div class="details">
+            <p>
+              HELLO EVERYBODY, I AM 
+              <p id="name">SIDDHESH WANI</p>
+              <p id="skill">JUNIOR WEB DEVELOPER AND GRAPHIC DESIGNER</p>
+              Pursuing IT Engineering 2019-23 (VIT,Mumbai)
+            </p>
+             <ul class="con">
+                <li>
+                    <span><i class="fa fa-calendar" aria-hidden="true"></i></span>    
+                    <span> 28th November, 2001 </span>   
+                  </li>
+                  <li>
+          <span>
+           <i class="fa fa-map-marker" aria-hidden="true"></i>   
+          </span> 
+          <span>
+              A-302,Sai Sitaram Residency, Bhoirwadi,<br> Kalyan(W), Thane-421 301
+          </span> 
+        </li>
+        <li>
+          <span><i class="fa fa-phone" aria-hidden="true"></i></span>    
+          <p><a href="tel:+918169097015">+918169097015</p>   
+        </li>
+        <li>
+          <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+          <p><a href="mailto:wani.siddhesh.siddhesh2@gmail.com">wani.siddhesh.siddhesh2@gmail.com</a></p>
+        </li>
+        </ul>
+        <ul class="sci">
+            <li><a target="_blank" href="https://www.facebook.com/siddhesh.wani.1/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+            <li><a target="_blank" href="https://www.instagram.com/siddhesh_2801/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+            <li><a target="_blank" href="https://github.com/Siddhesh2811"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+           </ul>
+          </div>
+        </div>
+    </div>
+    <div class="card">
+      <div class="content">
+        <img src="{% static 'images/yashmistry.jpg' %}" />
+        <div class="details">
+          <p>
+            HELLO EVERYBODY, I AM 
+            <p id="name">YASH MISTRY</p>
+            <p id="skill">JUNIOR FULL STACK DEVELOPER</p>
+            Pursuing IT Engineering 2019-23 (VIT,Mumbai)
+          </p>
+           <ul class="con">
+              <li>
+                  <span><i class="fa fa-calendar" aria-hidden="true"></i></span>    
+                  <span> 25th August, 2001 </span>   
+                </li>
+                <li>
+        <span>
+         <i class="fa fa-map-marker" aria-hidden="true"></i>   
+        </span> 
+        <span>
+            B2/5,Bajrangi Chawl,Ganesh Nagar<br> Dahisar(E), Mumbai-400 068
+        </span> 
+      </li>
+      <li>
+        <span><i class="fa fa-phone" aria-hidden="true"></i></span>    
+        <p><a href="tel:+918291662688">+918291662688</p>   
+      </li>
+      <li>
+        <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+        <p><a href="mailto:yashmistry121@gmail.com">yashmistry121@gmail.com</a></p>
+      </li>
+      </ul>
+      <ul class="sci">
+          <li><a target="_blank" href="https://www.facebook.com/yash.mistry.581"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+          <li><a target="_blank" href="https://www.instagram.com/yashms25/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+          <li><a target="_blank" href="https://github.com/yashms25"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+         </ul>
+        </div>
+      </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <img src="{% static 'images/roshan.jpg' %}" />
+      <div class="details">
+        <p>
+          HELLO EVERYBODY, I AM 
+          <p id="name">ROSHAN MHATRE</p>
+          <p id="skill">JUNIOR FULL STACK DEVELOPER AND OPEN-SOURCE CONTRIBUTOR</p>
+          Pursuing IT Engineering 2019-23 (VIT,Mumbai)
+        </p>
+         <ul class="con">
+            <li>
+                <span><i class="fa fa-calendar" aria-hidden="true"></i></span>    
+                <span> 25th February, 2002 </span>   
+              </li>
+              <li>
+      <span>
+       <i class="fa fa-map-marker" aria-hidden="true"></i>   
+      </span> 
+      <span>
+          Shanti Niketan House,TataPower,Pisavli Gaon<br> Kalyan(E), Thane - 421 306
+      </span> 
+    </li>
+    <li>
+      <span><i class="fa fa-phone" aria-hidden="true"></i></span>    
+      <p><a href="tel:+919892647513">+919892647513</p>   
+    </li>
+    <li>
+      <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+      <p><a href="mailto:roshanmhatre989@gmail.com">roshanmhatre989@gmail.com</a></p>
+    </li>
+    </ul>
+    <ul class="sci">
+        <li><a target="_blank" href="https://m.facebook.com/100009895207756/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+        <li><a target="_blank" href="https://www.instagram.com/mr_rdm_/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a target="_blank" href="https://github.com/RoshanMhatre"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+       </ul>
+      </div>
+    </div>
+</div>
+  <div class="card">
+    <div class="content">
+      <img src="{% static 'images/yashkadam.jpeg' %}" />
+      <div class="details">
+        <p>
+          HELLO EVERYBODY, I AM 
+          <p id="name">YASH KADAM</p>
+          <p id="skill">JUNIOR WEB DEVELOPER</p>
+          Pursuing IT Engineering 2019-23 (VIT,Mumbai)
+        </p>
+         <ul class="con">
+            <li>
+                <span><i class="fa fa-calendar" aria-hidden="true"></i></span>    
+                <span> 13th February, 2002 </span>   
+              </li>
+              <li>
+      <span>
+       <i class="fa fa-map-marker" aria-hidden="true"></i>   
+      </span> 
+      <span>
+          B/10 Gangadevi C.H.S, V.P Road<br>Dombivli East, Thane-421201
+      </span> 
+    </li>
+    <li>
+      <span><i class="fa fa-phone" aria-hidden="true"></i></span>    
+      <p><a href="tel:+917021464905">+917021464905</p>   
+    </li>
+    <li>
+      <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+      <p><a href="mailto:yashsankadam@gmail.com">yashsankadam@gmail.com</a></p>
+    </li>
+    </ul>
+    <ul class="sci">
+        <li><a target="_blank" href="https://m.facebook.com/100016361561857/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+        <li><a target="_blank" href="https://www.instagram.com/yash13___/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a target="_blank" href="https://github.com/Yashkad13"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+       </ul>
+      </div>
+    </div>
+</div>
+  </body>
+</html>
